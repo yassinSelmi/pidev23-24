@@ -1,0 +1,56 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}Evenement index{% endblock %}
+
+{% block table %}
+    <div class="container">
+        <h1 class="my-4">Liste des Événements</h1>
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Date</th>
+                        <th>Heure</th>
+                        <th>Durée</th>
+                        <th>Nombre de Participants</th>
+                        <th>Lieu</th>
+                        <th>Type</th>
+                        <th>Organisateur</th>
+                        <th>Prix</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for evenement in evenements %}
+                        <tr>
+                            <td>{{ evenement.id }}</td>
+                            <td>{{ evenement.nom }}</td>
+                            <td>{{ evenement.date ? evenement.date|date('Y-m-d') : '' }}</td>
+                            <td>{{ evenement.heure ? evenement.heure|date('H:i:s') : '' }}</td>
+                            <td>{{ evenement.dure ? evenement.dure|date('H:i:s') : '' }}</td>
+                            <td>{{ evenement.nbreparticipants }}</td>
+                            <td>{{ evenement.lieu }}</td>
+                            <td>{{ evenement.type }}</td>
+                            <td>{{ evenement.organisateur }}</td>
+                            <td>{{ evenement.prix }}</td>
+                            <td>
+                                <a href="{{ path('app_evenement_show', {'id': evenement.id}) }}" class="btn btn-primary btn-sm">Voir</a>
+                                <a href="{{ path('app_evenement_edit', {'id': evenement.id}) }}" class="btn btn-secondary btn-sm">Modifier</a>
+                                {{ include('evenement/_delete_form.html.twig') }}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="11">Aucun enregistrement trouvé</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <a href="{{ path('app_evenement_new') }}" class="btn btn-success">Créer un nouvel événement</a>
+    </div>
+{% endblock %}

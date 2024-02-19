@@ -1,0 +1,24 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}Nouvel événement{% endblock %}
+
+{% block table %}
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h1 class="mb-0">Créer un nouvel événement</h1>
+                    </div>
+                    <div class="card-body">
+                        {{ include('evenement/_form.html.twig') }}
+                    </div>
+                    <div class="card-footer bg-light border-top">
+                        <a href="{{ path('app_evenement_index') }}" class="btn btn-secondary">Retour à la liste</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,39 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}ReservationEvent{% endblock %}
+
+{% block table %}
+    <h1>ReservationEvent</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ reservation_event.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ reservation_event.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ reservation_event.prenom }}</td>
+            </tr>
+            <tr>
+                <th>NbrPersonnes</th>
+                <td>{{ reservation_event.Nbrpersonnes }}</td>
+            </tr>
+            <tr>
+                <th>Vip</th>
+                <td>{{ reservation_event.vip ? 'Yes' : 'No' }}</td>
+            </tr>
+           
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_reservation_event_index') }}">back to list</a>
+
+    <a href="{{ path('app_reservation_event_edit', {'id': reservation_event.id}) }}">edit</a>
+
+    {{ include('reservation_event/_delete_form.html.twig') }}
+{% endblock %}
