@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Logement index{% endblock %}
+
+{% block body %}
+    <h1>Logement index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Type</th>
+                <th>Emplacement</th>
+                <th>Description</th>
+                <th>Capacite</th>
+                <th>Nbrchambre</th>
+                <th>Nbrsdb</th>
+                <th>Prix</th>
+                <th>Comodite</th>
+                <th>Photo</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for logement in logements %}
+            <tr>
+                <td>{{ logement.id }}</td>
+                <td>{{ logement.nom }}</td>
+                <td>{{ logement.type }}</td>
+                <td>{{ logement.emplacement }}</td>
+                <td>{{ logement.description }}</td>
+                <td>{{ logement.capacite }}</td>
+                <td>{{ logement.nbrchambre }}</td>
+                <td>{{ logement.nbrsdb }}</td>
+                <td>{{ logement.prix }}</td>
+                <td>{{ logement.comodite }}</td>
+                <td>{{ logement.photo }}</td>
+                <td>
+                    <a href="{{ path('app_logement_show', {'id': logement.id}) }}">show</a>
+                    <a href="{{ path('app_logement_edit', {'id': logement.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_logement_new') }}">Create new</a>
+{% endblock %}
