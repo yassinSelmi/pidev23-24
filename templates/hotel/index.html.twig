@@ -1,0 +1,48 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Ajouter Hotel{% endblock %}
+
+{% block table %}
+    <h1>Ajouter hotel</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Adresse</th>
+                <th>Ville</th>
+                <th>Etoile</th>
+                <th>Equipement</th>
+                <th>Disponibliter</th>
+                <th>image</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for hotel in hotels %}
+            <tr>
+                <td>{{ hotel.id }}</td>
+                <td>{{ hotel.nom }}</td>
+                <td>{{ hotel.adresse }}</td>
+                <td>{{ hotel.ville }}</td>
+                <td>{{ hotel.etoile }}</td>
+                <td>{{ hotel.equipement }}</td>
+                <td>{{ hotel.disponibliter }}</td>
+                <td> <img src="{{ asset(hotel.image) }}" alt="" style="width: 100px;height:100px"> </td>
+                <td>
+                    <a href="{{ path('app_hotel_show', {'id': hotel.id}) }}">show</a>
+                    <a href="{{ path('app_hotel_edit', {'id': hotel.id}) }}">edit</a>
+                   {{ include('hotel/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a style=color:green href="{{ path('app_hotel_new') }}">Ajouter nouveau hotel</a>
+{% endblock %}

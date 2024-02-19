@@ -1,0 +1,47 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}list des Reservations{% endblock %}
+
+{% block table %}
+    <h1>list des Reservations</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nomhotel</th>
+                <th>NomClient</th>
+                <th>NbPersonne</th>
+                <th>NbNuit</th>
+                <th>DateArrive</th>
+                <th>DateSortie</th>
+                <th>Prix</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservationhotel in reservationhotels %}
+            <tr>
+                <td>{{ reservationhotel.id }}</td>
+                <td>{{ reservationhotel.nomhotel }}</td>
+                <td>{{ reservationhotel.nomClient }}</td>
+                <td>{{ reservationhotel.NbPersonne }}</td>
+                <td>{{ reservationhotel.NbNuit }}</td>
+                <td>{{ reservationhotel.DateArrive ? reservationhotel.DateArrive|date('Y-m-d') : '' }}</td>
+                <td>{{ reservationhotel.DateSortie ? reservationhotel.DateSortie|date('Y-m-d') : '' }}</td>
+                <td>{{ reservationhotel.prix }}</td>
+                <td>
+                    <a href="{{ path('app_reservationhotel_show', {'id': reservationhotel.id}) }}">show</a>
+                   
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+  
+{% endblock %}

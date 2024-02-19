@@ -1,0 +1,51 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Reservationhotel{% endblock %}
+
+{% block table %}
+    <h1>Reservationhotel</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ reservationhotel.id }}</td>
+            </tr>
+            <tr>
+                <th>Nomhotel</th>
+                <td>{{ reservationhotel.nomhotel }}</td>
+            </tr>
+            <tr>
+                <th>NomClient</th>
+                <td>{{ reservationhotel.nomClient }}</td>
+            </tr>
+            <tr>
+                <th>NbPersonne</th>
+                <td>{{ reservationhotel.NbPersonne }}</td>
+            </tr>
+            <tr>
+                <th>NbNuit</th>
+                <td>{{ reservationhotel.NbNuit }}</td>
+            </tr>
+            <tr>
+                <th>DateArrive</th>
+                <td>{{ reservationhotel.DateArrive ? reservationhotel.DateArrive|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateSortie</th>
+                <td>{{ reservationhotel.DateSortie ? reservationhotel.DateSortie|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ reservationhotel.prix }}</td>
+            </tr>
+            
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_reservationhotel_index') }}">back to list</a>
+
+   
+
+    {{ include('reservationhotel/_delete_form.html.twig') }}
+{% endblock %}
