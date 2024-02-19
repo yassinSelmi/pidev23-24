@@ -1,0 +1,97 @@
+<style>
+    .form-error {
+        color:red;
+    }
+    Cod
+
+</style>
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+
+        <div class="form-group">
+            <label class="bmd-label-floating">   Nom de restaurant
+            </label>
+            <input type="text" class="form-control" {{ form_widget(form.nomResto) }}
+
+            <div class="form-error">
+                {{ form_errors(form.nomResto) }}
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="bmd-label-floating">    Adresse de restaurant
+            </label>
+            <input type="text" class="form-control" {{ form_widget(form.adresseResto) }}
+
+            <div class="form-error">
+                {{ form_errors(form.adresseResto) }}
+            </div>
+        </div>
+
+
+
+    <div class="form-group">
+            <label class="bmd-label-floating">    Numero de telephone de restaurant
+            </label>
+            <input type="number" class="form-control" {{ form_widget(form.numeroResto) }}
+
+            <div class="form-error">
+                {{ form_errors(form.numeroResto) }}
+            </div>
+        </div>
+
+
+
+<div class="form-group">
+            <label class="bmd-label-floating">  Image
+            </label>
+            <input type="file" class="form-control" {{ form_widget(form.image) }}
+
+            <div class="form-error">
+                {{ form_errors(form.image) }}
+            </div>
+    </div>
+
+
+
+
+<div class="form-group">
+            <label class="bmd-label-floating">    Nombre de fourchette
+            </label>
+            <input type="number" class="form-control" {{ form_widget(form.nombreFourchette) }}
+
+            <div class="form-error">
+                {{ form_errors(form.nombreFourchette) }}
+            </div>
+    </div>
+
+
+<br>
+
+<div class="form-group">
+            <label class="bmd-label-floating">    Fourchette de prix
+            </label>
+            <input type="number" class="form-control" {{ form_widget(form.FourchetteDePrix) }}
+            <div class="form-error">
+                {{ form_errors(form.FourchetteDePrix) }}
+            </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+{{ form_widget(form) }}
+    <button class="btn btn-primary" class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+<br>

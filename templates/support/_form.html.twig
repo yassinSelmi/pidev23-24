@@ -1,0 +1,41 @@
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+
+
+        <div class="form-group">
+            <label class="bmd-label-floating">   Nom responsable
+            </label>
+            <input type="text" class="form-control" {{ form_widget(form.nomResponsable) }}
+            
+            <div>
+                {{ form_errors(form.nomResponsable) }}
+            </div>
+        </div>
+
+
+
+
+
+        <div class="form-group">
+            <label class="bmd-label-floating">   Nom telephone
+            </label>
+            <input type="number" class="form-control" {{ form_widget(form.numTel) }}
+            
+            <div>
+                {{ form_errors(form.numTel) }}
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    {{ form_widget(form) }}
+    <button class="btn btn-primary" class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
