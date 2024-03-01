@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\EvenementRepository;
+use App\Entity\Evenement;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -21,7 +22,7 @@ class Evenement
     private ?string $nom = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    
+    #[Assert\GreaterThan('today')]
     private ?\DateTimeInterface $date = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]

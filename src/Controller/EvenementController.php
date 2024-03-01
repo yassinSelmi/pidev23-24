@@ -68,6 +68,14 @@ class EvenementController extends AbstractController
             'evenement' => $evenement,
         ]);
     }
+    #[Route('/{id}', name: 'app_evenement_show', methods: ['GET'])]
+    public function showFront(Evenement $evenement): Response
+    {
+        return $this->render('evenement/showFront.html.twig', [
+            'evenement' => $evenement,
+        ]);
+    }
+   
 
     #[Route('/{id}/edit', name: 'app_evenement_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Evenement $evenement, EntityManagerInterface $entityManager): Response

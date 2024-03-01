@@ -32,7 +32,8 @@
     <link href="{{asset('front/css/style.css')}}" rel="stylesheet">
 </head>
 
-<body>
+<body data-controller="symfony--ux-swup--swup">
+    <main id="swup">
     <div class="container-xxl bg-white p-0">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -211,16 +212,26 @@
 
 
                                 </div>
-<p class="mb-3"><i class="fas fa-users me-2"></i><strong>Nombre de participants:</strong> {{ evenement.nbreparticipants }}</p>
+<p class="mb-3"><i class="fas fa-users me-2"></i><strong>Nombre de participants:</strong>
+    {% if evenement.nbreparticipants > 100 %}
+        Full
+    {% else %}
+        {{ evenement.nbreparticipants }}
+    {% endif %}
+</p>
+
             <p class="mb-3"><i class="fas fa-map-marker-alt me-2"></i><strong>Lieu:</strong> {{ evenement.lieu }}</p>
             <p class="mb-3"><i class="fas fa-tag me-2"></i><strong>Type:</strong> {{ evenement.type }}</p>
             <p class="mb-3"><i class="fas fa-user me-2"></i><strong>Organisateur:</strong> {{ evenement.organisateur }}</p>
             <p class="mb-3"><i class="fas fa-money-bill-alt me-2"></i><strong>Prix:</strong> {{ evenement.prix }}</p>
         
                                 <div class="d-flex justify-content-between">
-                                    {#<a class="btn btn-sm btn-primary rounded py-2 px-4" href="">View Detail</a>#}
-                                    <a class="btn btn-sm btn-dark rounded py-2 px-4" href="{{ path('app_reservation_event_new') }}">Book Now</a>
-                                </div>
+                                    {% if evenement.nbreparticipants < 100 %}
+ <a class="btn btn-sm btn-primary rounded py-2 px-4" href="{{ path('app_evenement_show', {'id': evenement.id}) }}">View Detail</a>
+      <a href="{{ path('app_reservation_event_new') }}" class="btn btn-success">Book Now</a>
+{% else %}
+    <p>This event is fully booked.</p>
+{% endif %}  </div>
                             </div>
                         </div>
                     </div>
@@ -230,8 +241,13 @@
 
 
 
-
-
+{#
+{% if evenement.nbreparticipants < 100 %}
+ <a class="btn btn-sm btn-primary rounded py-2 px-4" href="{{ path('app_evenement_show', {'id': evenement.id}) }}">View Detail</a>
+      <a href="{{ path('app_reservation_event_new') }}" class="btn btn-success">Book Now</a>
+{% else %}
+    <p>This event is fully booked.</p>
+{% endif %}#}
 
 
 
@@ -409,6 +425,8 @@
 
     <!-- Template Javascript -->
     <script src="{{asset('front/js/main.js')}}"></script>
+    </main>
+
 </body>
 
 </html>

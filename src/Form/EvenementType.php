@@ -23,6 +23,8 @@ class EvenementType extends AbstractType
             ->add('organisateur')
             ->add('prix')
             ->add('image', FileType::class,array('data_class' => null,'required' => false), ['label' => true,] )
+           
+            
         ;
     }
 

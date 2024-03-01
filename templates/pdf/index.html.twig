@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Détails de l'événement</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+        .event-details {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .event-details h1 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .event-details img {
+            display: block;
+            max-width: 100%;
+            margin: 0 auto 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .event-details p {
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: #666;
+            line-height: 1.6;
+        }
+        .event-details .attribute {
+            font-weight: bold;
+            color: #FFA500;
+        }
+    </style>
+</head>
+<body>
+    <div class="event-details">
+        <h1>Détails de l'événement</h1>
+      
+        <p><span class="attribute">Nom:</span> {{ evenement.nom }}</p>
+        <p><span class="attribute">Date:</span> {{ evenement.date | date('d/m/Y') }}</p>
+        <p><span class="attribute">Lieu:</span> {{ evenement.lieu }}</p>
+        <p><span class="attribute">Heure:</span> {{ evenement.heure | date('H:i') }}</p>
+        <p><span class="attribute">Durée:</span> {{ evenement.dure | date('H:i') }}</p>
+        <p><span class="attribute">Nombre de participants:</span> {{ evenement.nbreparticipants }}</p>
+        <p><span class="attribute">Type:</span> {{ evenement.type }}</p>
+        <p><span class="attribute">Organisateur:</span> {{ evenement.organisateur }}</p>
+        <p><span class="attribute">Prix:</span> {{ evenement.prix }}</p>
+        <!-- Ajoutez d'autres détails de l'événement ici -->
+    </div>
+</body>
+</html>

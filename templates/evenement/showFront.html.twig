@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Evenement{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="card-title text-center mb-0">{{ evenement.nom }}</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Date:</strong> {{ evenement.date ? evenement.date|date('Y-m-d') : '' }}</li>
+                            <li class="list-group-item"><strong>Heure:</strong> {{ evenement.heure ? evenement.heure|date('H:i') : '' }}</li>
+                            <li class="list-group-item"><strong>Durée:</strong> {{ evenement.dure ? evenement.dure|date('H:i') : '' }}</li>
+                            <li class="list-group-item"><strong>Nombre de participants:</strong> {{ evenement.nbreparticipants }}</li>
+                            <li class="list-group-item"><strong>Lieu:</strong> {{ evenement.lieu }}</li>
+                            <li class="list-group-item"><strong>Type:</strong> {{ evenement.type }}</li>
+                            <li class="list-group-item"><strong>Prix:</strong> {{ evenement.prix }}</li>
+                        </ul>
+                        <div class="mt-3">
+                            <a href="{{ path('app_evenement_indexx') }}" class="btn btn-outline-primary">Retour à la liste</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-6 offset-md-3 wow fadeIn" data-wow-delay="0.1s">
+    <iframe class="position-relative rounded w-100 h-100"
+        src="https://maps.google.com/maps?q={{ evenement.lieu }}&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
+        frameborder="0" style="min-height: 400px; border:0;" allowfullscreen="" aria-hidden="false"
+        tabindex="0"></iframe>
+        </div>
+
+        </div>
+    </div>
+{% endblock %}
+    
