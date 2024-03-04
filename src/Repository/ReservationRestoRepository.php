@@ -21,4 +21,29 @@ class ReservationRestoRepository extends ServiceEntityRepository
         parent::__construct($registry, ReservationResto::class);
     }
 
+
+
+
+    public function deletereservation()
+    {
+
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+           DELETE FROM `reservation_resto` WHERE date_reserv < CURRENT_DATE ';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+
+    }
+
+
+
+
+
+
+
+
+    
+
 }

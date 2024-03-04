@@ -45,4 +45,38 @@ class RestaurantRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+
+
+
+public function findProduitsBySujet($nomResto,$specialtie){
+    $em = $this->getEntityManager();
+
+    $query = $em->createQuery(
+        'SELECT r FROM App\Entity\Restaurant r   where r.nomResto like :nomResto and r.specialtie like :specialtie '
+    );
+
+    $query->setParameter('nomResto', $nomResto . '%');
+    $query->setParameter('specialtie', $specialtie . '%');
+
+    return $query->getResult();
+}
+
+
+
+public function find_Nb_Rec_Par_Status($specialtie){
+
+    $em = $this->getEntityManager();
+
+    $query = $em->createQuery(
+        'SELECT DISTINCT  count(r.id) FROM   App\Entity\Restaurant r  where r.specialtie = :specialtie   '
+    );
+    $query->setParameter('specialtie', $specialtie);
+    return $query->getResult();
+}
+
+
+
+
+
 }

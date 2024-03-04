@@ -5,19 +5,27 @@ namespace App\Controller;
 use App\Entity\ReservationResto;
 use App\Form\ReservationRestoType;
 use App\Repository\ReservationRestoRepository;
+use Symfony\Component\VarDumper\VarDumper;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\VarDumper\VarDumper;
+use MercurySeries\FlashyBundle\FlashyNotifier;
+
 
 #[Route('/reservation/resto')]
 class ReservationRestoController extends AbstractController
 {
     #[Route('/', name: 'app_reservation_resto_index', methods: ['GET'])]
-    public function index(ReservationRestoRepository $reservationRestoRepository): Response
+    public function index(ReservationRestoRepository $reservationRestoRepository,FlashyNotifier $flashy): Response
     {
+        $flashy->primaryDark('Liste des reservations', 'http://your-awesome-link.com');
+
+
+      $requestsql = $this->getDoctrine()->getRepository(ReservationResto::class)->deletereservation();
+
+
         return $this->render('reservation_resto/index.html.twig', [
             'reservation_restos' => $reservationRestoRepository->findAll(),
         ]);
@@ -31,6 +39,10 @@ class ReservationRestoController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $reservationResto->setIdClient(1);
+
+
             $entityManager->persist($reservationResto);
             $entityManager->flush();
 
@@ -105,6 +117,10 @@ class ReservationRestoController extends AbstractController
             'form' => $form,
         ]);
     }
+
+
+
+
 
 
 

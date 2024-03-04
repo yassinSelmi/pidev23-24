@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\RestaurantRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;//controle saisie biblio
+use Symfony\Component\Serializer\Annotation\Groups ;
 
 #[ORM\Entity(repositoryClass: RestaurantRepository::class)]
 class Restaurant
@@ -12,16 +13,17 @@ class Restaurant
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    
-
+    #[Groups(['restaurants'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
+    #[Groups(['restaurants'])]
     private ?string $nomResto = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
+    #[Groups(['restaurants'])]
     private ?string $adresseResto = null;
 
     #[ORM\Column(length: 255)]
@@ -30,16 +32,21 @@ class Restaurant
         min: 8,
         max: 8,
         minMessage: 'Le numéro doit etre composé par 8 chiffre',
-    )]    
+    )]  
+    #[Groups(['restaurants'])]  
     private ?string $numeroResto = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
+    #[Groups(['restaurants'])]
     private ?string $specialtie = null;
 
 
     #[ORM\Column(length: 255)]
+    #[Groups(['restaurants'])]
     private ?string $image = null;
+
+
     public function getImage(): ?string
     {
         return $this->image;
@@ -61,7 +68,8 @@ class Restaurant
         min: 1,
         max: 3,
         minMessage: 'Le nombre de fourchette doit etre varie entre 1 et 3',
-    )] 
+    )]
+    #[Groups(['restaurants'])] 
     private ?int $nombreFourchette = null;
     public function getnombreFourchette(): ?int
     {
@@ -77,7 +85,9 @@ class Restaurant
 
     #[ORM\Column]
     #[Assert\NotBlank]
+    #[Groups(['restaurants'])]
     private ?int $FourchetteDePrix = null;
+
     public function getFourchetteDePrix(): ?int
     {
         return $this->FourchetteDePrix;
@@ -93,7 +103,9 @@ class Restaurant
 
 
     #[ORM\Column]
+    #[Groups(['restaurants'])]
     private ?int $heureOuverture = null;
+
     public function getHeureOuverture(): ?int
     {
         return $this->heureOuverture;
@@ -107,7 +119,9 @@ class Restaurant
 
 
     #[ORM\Column]
+    #[Groups(['restaurants'])]
     private ?int $heureFermeture = null;
+    
     public function getheureFermeture(): ?int
     {
         return $this->heureFermeture;
