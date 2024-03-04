@@ -1,0 +1,37 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Edit Reservation{% endblock %}
+
+{% block table %}
+    <h1>Edit Reservation</h1>
+
+    <div class="form-group">
+        <label for="datedebut">Date de début :</label>
+        {{ form_widget(form.datedebut, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        <label for="datefin">Date de fin :</label>
+        {{ form_widget(form.datefin, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        <label for="nbrinvite">Nombre d'invités :</label>
+        {{ form_widget(form.nbrinvite, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        <label for="statut">Statut :</label>
+        {{ form_widget(form.statut, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        <label for="couttotale">Coût total :</label>
+        {{ form_widget(form.couttotale, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a href="{{ path('app_reservation_index') }}" class="btn btn-secondary">Back to list</a>
+
+    {{ include('reservation/_delete_form.html.twig') }}
+{% endblock %}

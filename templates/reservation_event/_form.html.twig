@@ -1,0 +1,48 @@
+{{ form_start(form) }}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-body">
+
+
+        <div class="form-group">
+            <label class="bmd-label-floating">   Nom de Client
+            </label>
+            <input type="text" class="form-control"  value="{{ app.user.getNom() }}"  {{ form_widget(form.nom) }}
+
+        </div>
+
+
+              <div class="form-group">
+            <label class="bmd-label-floating">   Prenom de Client
+            </label>
+            <input type="text" class="form-control"  value="{{ app.user.getPrenom() }}"  {{ form_widget(form.prenom) }}
+        </div>
+
+
+                  <div class="form-group">
+            <label class="bmd-label-floating">   Nombre de personne
+            </label>
+            <input type="text" class="form-control" {{ form_widget(form.nbrpersonnes) }}
+        </div>
+
+
+        
+                  <div class="form-group">
+            <label class="bmd-label-floating">   VIP
+            </label>
+            <label type="checkbox" class="form-control"> {{ form_widget(form.vip) }} </label>
+        </div>
+
+
+
+                    </div>
+                    <div class="card-footer bg-light border-top">
+                        <button type="submit" class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{{ form_end(form) }}

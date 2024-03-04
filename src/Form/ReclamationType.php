@@ -1,0 +1,86 @@
+<?php
+
+namespace App\Form;
+
+use App\Entity\Reclamation;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use App\Repository\SupportRepository;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+
+class ReclamationType extends AbstractType
+{
+
+    private $SupportRepository;
+    public  function __construct(SupportRepository $SupportRepository)
+    {
+        $this->SupportRepository = $SupportRepository;
+    }
+
+
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $builder
+        
+            ->add('contenu')
+
+            ->add('date', DateType::class, [
+                'widget' => 'single_text',
+                'data' => new \DateTime(), // Utiliser la date actuelle du serveur comme valeur par défaut
+                'format' => 'yyyy-MM-dd', // Format de date
+                'attr' => [
+                    'class' => 'datepicker', // Ajouter une classe pour identifier le champ de date dans le JS
+                    'autocomplete' => 'off', // Désactiver l'autocomplétion du navigateur
+                    'min' => (new \DateTime())->format('Y-m-d') // Bloquer les dates précédentes
+                ]
+            ])
+            
+            
+            
+            ->add('categorie', ChoiceType::class, [
+                'choices' => [
+                    'Proposition' => 'Proposition',
+                    'Question' => 'Question',
+                ],
+                'expanded' => true,
+                'multiple' => false,
+                'choice_attr' => [
+                    'Proposition' => ['style' => 'margin-right: 10px;'], 
+                ],
+            ])
+            
+            
+
+            ->add('support', ChoiceType::class, [
+                'multiple' => false,
+                'choices' => $this->SupportRepository->createQueryBuilder('u')->select("(u.nomResponsable) as nomResponsable")->getQuery()->getResult(),
+                'choice_label' => function ($choice) {
+                    return $choice;
+                },
+                'attr' => [
+                    'class' => 'form-select'
+                ]
+            ])
+            
+            ->add('image', FileType::class, [ // Ajout du champ de fichier
+                'label' => 'Fichier',
+                'required' => false, // Le champ de fichier n'est pas obligatoire
+            ])
+
+
+
+
+        ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => Reclamation::class,
+        ]);
+    }
+}

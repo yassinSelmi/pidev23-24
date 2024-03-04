@@ -21,17 +21,22 @@
                     <div class="col-md-6">
                         {{ form_row(form.cin, {'label': 'CIN', 'attr': {'class': 'form-control'}}) }}
                     </div>
+                    
                     <div class="col-md-6">
                         {{ form_row(form.email, {'label': 'Email', 'attr': {'class': 'form-control'}}) }}
                     </div>
-                    <div class="col-md-6">
-                        {{ form_row(form.roles, {'label': 'Rôle', 'attr': {'class': 'form-select'}}) }}
-                    </div>
+                   
                     <div class="col-md-6">
                         {{ form_row(form.password, {'label': 'Mot de passe', 'attr': {'class': 'form-control'}}) }}
                     </div>
                     <div class="col-md-6">
                         {{ form_row(form.num, {'label': 'Numéro', 'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.profileImage) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.recaptcha) }}
                     </div>
                     <div class="col-12 text-center">
                         <button type="submit" class="btn btn-primary px-5 mt-3">S'inscrire</button>

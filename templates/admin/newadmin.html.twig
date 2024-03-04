@@ -1,0 +1,47 @@
+
+{% extends 'base2.html.twig' %}
+
+{% block title %}New admin{% endblock %}
+
+{% block table %}
+   <div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-primary text-white text-center py-3">
+                    <h4 class="mb-0">Inscription</h4>
+                </div>
+                <div class="card-body p-4">
+                    {{ form_start(form, {'attr': {'class': 'row g-3'}}) }}
+                    <div class="col-md-6">
+                        {{ form_row(form.nom, {'label': 'Nom', 'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.prenom, {'label': 'Prénom', 'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.cin, {'label': 'CIN', 'attr': {'class': 'form-control'}}) }}
+                    </div>
+                     <div class="col-md-6">
+                        {{ form_row(form.roles, {'label': 'roles', 'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.email, {'label': 'Email', 'attr': {'class': 'form-control'}}) }}
+                    </div>
+                   
+                    <div class="col-md-6">
+                        {{ form_row(form.password, {'label': 'Mot de passe', 'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.num, {'label': 'Numéro', 'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="col-12 text-center">
+                        <button type="submit" class="btn btn-primary px-5 mt-3">S'inscrire</button>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

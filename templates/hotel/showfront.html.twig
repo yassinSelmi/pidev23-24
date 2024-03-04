@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hotel{% endblock %}
+
+{% block body %}
+    <h1>Hotel</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ hotel.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ hotel.nom }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ hotel.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ hotel.ville }}</td>
+            </tr>
+            <tr>
+                <th>Etoile</th>
+                <td>{{ hotel.etoile }}</td>
+            </tr>
+            <tr>
+                <th>Equipement</th>
+                <td>{{ hotel.equipement }}</td>
+            </tr>
+            <tr>
+                <th>Disponibliter</th>
+                <td>{{ hotel.disponibliter }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td> <img src="{{ asset(hotel.image) }}" alt="" style="width: 100px;height:100px"> </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+  
+
+  
+{% endblock %}

@@ -24,9 +24,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         )]
     private ?string $email = null;
 
-    
-    #[ORM\Column(length: 255)]
-    private ?string $roles = null;
+    #[ORM\Column]
+    private array $roles = [];
 
     #[ORM\Column]
     #[Assert\Regex(
@@ -76,6 +75,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
          )]
     private ?int $cin = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $profile_image = null;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -110,12 +113,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return (string) $this->email;
     }
-    public function getRoles(): ?string
+      /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
-        return $this->roles;
+        $roles = $this->roles;
+        // garantir que chaque utilisateur a au moins ROLE_USER
+        
+        // ajouter d'autres rôles si l'utilisateur a des rôles supplémentaires
+        if (in_array('ROLE_USER', $this->roles)) {
+            $roles[] = 'ROLE_USER';
+        }
+       
+        if (in_array('ROLE_ADMIN', $this->roles)) {
+            $roles[] = 'ROLE_ADMIN';
+        }
+    
+        return array_unique($roles);
     }
+    
 
-    public function setRoles(string $roles): static
+    public function setRoles(array $roles): static
     {
         $this->roles = $roles;
 
@@ -204,4 +223,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function getProfileImage(): ?string
+    {
+        return $this->profile_image;
+    }
+
+    public function setProfileImage(string $profile_image): static
+    {
+        $this->profile_image = $profile_image;
+
+        return $this;
+    }
+  
 }

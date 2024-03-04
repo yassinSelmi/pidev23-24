@@ -1,0 +1,40 @@
+<style>
+    .form-error {
+        color:red;
+    }
+    Cod
+
+</style>
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}   
+
+
+
+
+        <div class="form-group">
+            <label class="bmd-label-floating">   Nom de Client
+            </label>
+            <input type="text" class="form-control" value="{{ app.user.getNom() }} {{ app.user.getPrenom() }}" {{ form_widget(form.nomClient) }}
+
+            <div class="form-error">
+                {{ form_errors(form.nomClient) }}
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="bmd-label-floating">    Numero de client
+            </label>
+            <input type="text" class="form-control" value="{{ app.user.getNum() }}" {{ form_widget(form.numeroClient) }}
+
+            <div class="form-error">
+                {{ form_errors(form.numeroClient) }}
+            </div>
+        </div>
+
+
+
+<br>
+{{ form_widget(form) }}
+    <button class="btn btn-primary" class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+<br>

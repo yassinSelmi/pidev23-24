@@ -1,0 +1,46 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}Liste des réservations d'événements{% endblock %}
+
+{% block table %}
+    <div class="container">
+        <h1 class="my-4">Liste des réservations d'événements</h1>
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Nombre de Personnes</th>
+                        <th>VIP</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reservation_event in reservation_events %}
+                        <tr>
+                            <td>{{ reservation_event.id }}</td>
+                            <td>{{ reservation_event.nom }}</td>
+                            <td>{{ reservation_event.prenom }}</td>
+                            <td>{{ reservation_event.nbrpersonnes }}</td>
+                            <td>{{ reservation_event.vip ? 'Oui' : 'Non' }}</td>
+                            <td>
+                                <a href="{{ path('app_reservation_event_show', {'id': reservation_event.id}) }}" class="btn btn-primary btn-sm">Voir</a>
+                               {# <a href="{{ path('app_reservation_event_edit', {'id': reservation_event.id}) }}" class="btn btn-secondary btn-sm">Modifier</a>#}
+                                {{ include('reservation_event/_delete_form.html.twig') }}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="6">Aucun enregistrement trouvé</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+       {# <a href="{{ path('app_reservation_event_new') }}" class="btn btn-success">Créer une nouvelle réservation</a>#}
+    </div>
+{% endblock %}
